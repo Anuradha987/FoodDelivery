@@ -1,5 +1,6 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text , StyleSheet, SafeAreaView, TouchableOpacity, Image, Animated} from 'react-native';
+import {icons, COLORS, SIZES, FONTS} from '../constants'; 
 
 const Restaurant=()=>{
 return(

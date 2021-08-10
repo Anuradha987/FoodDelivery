@@ -1,19 +1,23 @@
 import React from 'react';
-import {View, Image, TouchableOpacity} from 'react-native';
-import {createButtomTabNavigator, ButtomTabBar, createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {Home} from '../screens';
-import {COLORS, icons} from '../constants'
-import { defaults } from 'joi';
-import Svg, {Path} from 'react-native-svg'
+import {
+    View,
+    Image,
+    TouchableOpacity
+} from 'react-native';
+import { createBottomTabNavigator, BottomTabBar } from "@react-navigation/bottom-tabs"
+import Svg, { Path } from 'react-native-svg';
+import { Home } from "../screens"
+import { COLORS, icons } from "../constants"
 
 const Tab = createBottomTabNavigator();
 
-const TabBarCustomButton =({accessibilityState, children, onPress})=>{
-    var isSelected = accessibilityState.Selected
-    if(isSelected){
+const TabBarCustomButton = ({ accessibilityState, children, onPress }) => {
 
-        return( 
-                <View style={{ flex: 1, alignItems: "center" }}>
+    var isSelected = accessibilityState.selected
+
+    if (isSelected) {
+        return (
+            <View style={{ flex: 1, alignItems: "center" }}>
                 <View style={{ flexDirection: 'row', position: 'absolute', top: 0 }}>
                     <View style={{ flex: 1, backgroundColor: COLORS.white }}></View>
                     <Svg
@@ -31,7 +35,7 @@ const TabBarCustomButton =({accessibilityState, children, onPress})=>{
 
                 <TouchableOpacity
                     style={{
-                        top: -22.5,
+                        top: -12.5,
                         justifyContent: 'center',
                         alignItems: 'center',
                         width: 50,
@@ -44,16 +48,15 @@ const TabBarCustomButton =({accessibilityState, children, onPress})=>{
                     {children}
                 </TouchableOpacity>
             </View>
-                    
         )
-    }
+    } 
 
-    else{
-        return(
+    else {
+        return (
             <TouchableOpacity
                 style={{
                     flex: 1,
-                    height: 60,
+                    height: 50,
                     backgroundColor: COLORS.white
                 }}
                 activeOpacity={1}
@@ -65,136 +68,140 @@ const TabBarCustomButton =({accessibilityState, children, onPress})=>{
     }
 }
 
-const CustomTabBar = (props) =>{
-    return (
-        <View>
+const CustomTabBar = (props) => {
+        return (
             <View>
-                style={{
-                    position: 'absolute', 
-                    bottom:0, 
-                    left:0, 
-                    right: 0, 
-                    height:30,
-                    backgroundColor:COLORS.white
-                }}
+                <View
+                    style={{
+                        position: 'absolute',
+                        bottom: 0,
+                        left: 0,
+                        right: 0,
+                        height: 30,
+                        backgroundColor: COLORS.white
+                    }}
+                ></View>
+                <BottomTabBar
+                    {...props.props}
+                />
             </View>
-        <ButtomTabBar {...props.props}/>
-        </View>
-    )
+        )
 }
-const Tabs=()=>{
-    return(
+
+const Tabs = () => {
+    return (
         <Tab.Navigator
-            tabBarOptions ={{
-                showLabel:false,
+            tabBarOptions={{
+                showLabel: false,
                 style: {
-                    backgroundColor: "transparent",
+                    position: 'absolute',
+                    left: 0,
+                    bottom: 0,
+                    right: 0,
                     borderTopWidth: 0,
-                    elevation:0,
+                    backgroundColor: "transparent",
+                    elevation: 0
                 }
             }}
-            tabBar = {(props) =>(
-                <CustomTabBar 
-                    props ={props}
+            tabBar={(props) => (
+                <CustomTabBar
+                    props={props}
                 />
             )}
         >
-
             <Tab.Screen
-            name="Home"
-            component={Home}
-            options={{
-                tabBarIcon: ({focused}) =>(
-                    <Image
-                        source ={icons.cutlery}
-                        resizeMode="contain"
-                        style={{
-                            width:25,
-                            height:25, 
-                            tintColor:focused ? COLORS.primary: COLORS.secondary
-                        }}
-                    />
-                ), 
-                tabBarButton: (props) =>(
-                    <TabBarCustomButton
-                    {...props}
-                    />
-                ) 
-            }}
+                name="Home"
+                component={Home}
+                options={{
+                    tabBarIcon: ({ focused }) => (
+                        <Image
+                            source={icons.cutlery}
+                            resizeMode="contain"
+                            style={{
+                                width: 25,
+                                height: 25,
+                                tintColor: focused ? COLORS.primary : COLORS.secondary
+                            }}
+                        />
+                    ),
+                    tabBarButton: (props) => (
+                        <TabBarCustomButton
+                            {...props}
+                        />
+                    )
+                }}
             />
 
             <Tab.Screen
-            name="Search"
-            component={Home}
-            options={{
-                tabBarIcon: ({focused}) =>(
-                    <Image
-                        source ={icons.search}
-                        resizeMode="contain"
-                        style={{
-                            width:25,
-                            height:25, 
-                            tintColor:focused ? COLORS.primary: COLORS.secondary
-                        }}
-                    />
-                ), 
-                tabBarButton: (props) =>(
-                    <TabBarCustomButton
-                    {...props}
-                    />
-                ) 
-            }}
+                name="Search"
+                component={Home}
+                options={{
+                    tabBarIcon: ({ focused }) => (
+                        <Image
+                            source={icons.search}
+                            resizeMode="contain"
+                            style={{
+                                width: 25,
+                                height: 25,
+                                tintColor: focused ? COLORS.primary : COLORS.secondary
+                            }}
+                        />
+                    ),
+                    tabBarButton: (props) => (
+                        <TabBarCustomButton
+                            {...props}
+                        />
+                    )
+                }}
             />
 
             <Tab.Screen
-            name="Like"
-            component={Home}
-            options={{
-                tabBarIcon: ({focused}) =>(
-                    <Image
-                        source ={icons.like}
-                        resizeMode="contain"
-                        style={{
-                            width:25,
-                            height:25, 
-                            tintColor:focused ? COLORS.primary: COLORS.secondary
-                        }}
-                    />
-                ), 
-                tabBarButton: (props) =>(
-                    <TabBarCustomButton
-                    {...props}
-                    />
-                ) 
-            }}
+                name="Like"
+                component={Home}
+                options={{
+                    tabBarIcon: ({ focused }) => (
+                        <Image
+                            source={icons.like}
+                            resizeMode="contain"
+                            style={{
+                                width: 25,
+                                height: 25,
+                                tintColor: focused ? COLORS.primary : COLORS.secondary
+                            }}
+                        />
+                    ),
+                    tabBarButton: (props) => (
+                        <TabBarCustomButton
+                            {...props}
+                        />
+                    )
+                }}
             />
 
             <Tab.Screen
-            name="User"
-            component={Home}
-            options={{
-                tabBarIcon: ({focused}) =>(
-                    <Image
-                        source ={icons.user}
-                        resizeMode="contain"
-                        style={{
-                            width:25,
-                            height:25, 
-                            tintColor:focused ? COLORS.primary: COLORS.secondary
-                        }}
-                    />
-                ), 
-                tabBarButton: (props) =>(
-                    <TabBarCustomButton
-                    {...props}
-                    />
-                ) 
-            }}
+                name="User"
+                component={Home}
+                options={{
+                    tabBarIcon: ({ focused }) => (
+                        <Image
+                            source={icons.user}
+                            resizeMode="contain"
+                            style={{
+                                width: 25,
+                                height: 25,
+                                tintColor: focused ? COLORS.primary : COLORS.secondary
+                            }}
+                        />
+                    ),
+                    tabBarButton: (props) => (
+                        <TabBarCustomButton
+                            {...props}
+                        />
+                    )
+                }}
             />
-
-
         </Tab.Navigator>
     )
 }
 
-export default Tabs;
+export default Tabs
