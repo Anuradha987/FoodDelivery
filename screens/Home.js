@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, SafeAreaView, TouchableOpacity, Image, FlatList, Text, View, Touchable } from 'react-native';
 import { icons, images, SIZES, FONTS, COLORS } from '../constants';
 
+
 const Home = ({navigation}) =>{
 
         // Dummy Datas
@@ -79,7 +80,7 @@ const Home = ({navigation}) =>{
                 name: "Burger",
                 rating: 4.8,
                 categories: [5, 7],
-                priceRating: affordable,
+                priceRating: fairPrice,
                 photo: images.burger_restaurant_1,
                 duration: "30 - 45 min",
                 location: {
@@ -173,7 +174,7 @@ const Home = ({navigation}) =>{
                 name: "Hotdogs",
                 rating: 4.8,
                 categories: [3],
-                priceRating: expensive,
+                priceRating: fairPrice,
                 photo: images.hot_dog_restaurant,
                 duration: "20 - 25 min",
                 location: {
@@ -345,6 +346,7 @@ const Home = ({navigation}) =>{
         }
 // header part
     function renderHeader (){
+        
         return(
             <View style={{flexDirection:'row', height: 50}}>
 
