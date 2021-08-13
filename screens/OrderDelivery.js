@@ -1,10 +1,19 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 
-const OrderDelivery=()=>{
+const OrderDelinpm install react-native-maps --save-exact
+very=()=>{
+
+    function renderMap(){
+        return(
+            <View style={{}}>
+
+            </View>
+        )
+    }
 return(
-    <View>
-        <Text>Order Delivery</Text>
+    <View style = {{flex: 1}}>
+        {renderMap()}
     </View>
     )
 }
